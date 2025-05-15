@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now | Cyber Learns Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Cyber Theme Colors */
+        :root {
+            --primary-dark: #0A1128;
+            --primary-blue: #0066CC;
+            --accent-blue: #00F0FF;
+            --light-gray: #F5F5F5;
+            --white: #FFFFFF;
+            --black: #333333;
+            --error: #FF4D4D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(10, 17, 40, 0.9), rgba(10, 17, 40, 0.9)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            min-height: 100vh;
+            color: var(--white);
+            padding-top: 80px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .apply-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .apply-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--accent-blue), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .apply-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .apply-header p {
+            opacity: 0.9;
+        }
+
+        .apply-form .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .apply-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+
+        .apply-form input,
+        .apply-form select,
+        .apply-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .apply-form input:focus,
+        .apply-form select:focus,
+        .apply-form textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.2);
+        }
+
+        .apply-form input::placeholder,
+        .apply-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .apply-form select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300F0FF'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-option input {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .apply-form button {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent-blue);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .apply-form button:hover {
+            background: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.4);
+        }
+
+        .form-note {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .apply-container {
+                padding: 30px 20px;
+            }
+            
+            .apply-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="apply-container">
+            <div class="apply-header">
+                <div class="logo">
+                    <img src="static/images/logo.png" alt="Cyber Learns Academy Logo">
+                    <span class="logo-text">Cyber Learns Academy</span>
+                </div>
+                <h1>Application Form</h1>
+                <p>Begin your journey in cybersecurity and technology. Fill out the form below to apply.</p>
+            </div>
+            
+            <form method="POST" action="/apply" class="apply-form" id="applicationForm">
+
+                <!-- Personal Information -->
+                <h3 style="color: var(--accent-blue); margin-bottom: 20px; border-bottom: 1px solid rgba(0, 240, 255, 0.3); padding-bottom: 10px;">Personal Information</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required placeholder="John">
+                        <div class="error-message" id="firstNameError">Please enter your first name</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required placeholder="Doe">
+                        <div class="error-message" id="lastNameError">Please enter your last name</div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="john.doe@example.com">
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 123-4567">
+                        <div class="error-message" id="phoneError">Please enter a valid phone number</div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dob">Date of Birth *</label>
+                        <input type="date" id="dob" name="dob" required>
+                        <div class="error-message" id="dobError">Please enter your date of birth</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Gender *</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="male" name="gender" value="male" required>
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">Female</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="other" name="gender" value="other">
+                                <label for="other">Other</label>
+                            </div>
+                        </div>
+                        <div class="error-message" id="genderError">Please select your gender</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Street Address *</label>
+                    <input type="text" id="address" name="address" required placeholder="123 Main St">
+                    <div class="error-message" id="addressError">Please enter your address</div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" id="city" name="city" required placeholder="New York">
+                        <div class="error-message" id="cityError">Please enter your city</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="state">State/Province *</label>
+                        <input type="text" id="state" name="state" required placeholder="NY">
+                        <div class="error-message" id="stateError">Please enter your state/province</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="zip">ZIP/Postal Code *</label>
+                        <input type="text" id="zip" name="zip" required placeholder="10001">
+                        <div class="error-message" id="zipError">Please enter your ZIP/postal code</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="country">Country *</label>
+                    <select id="country" name="country" required>
+                        <option value="" disabled selected>Select your country</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="AU">Australia</option>
+                        <option value="IN">India</option>
+                        <!-- Add more countries as needed -->
+                    </select>
+                    <div class="error-message" id="countryError">Please select your country</div>
+                </div>
+                
+                <!-- Program Information -->
+                <h3 style="color: var(--accent-blue); margin: 40px 0 20px; border-bottom: 1px solid rgba(0, 240, 255, 0.3); padding-bottom: 10px;">Program Information</h3>
+                
+                <div class="form-group">
+                    <label for="program">Program of Interest *</label>
+                    <select id="program" name="program" required>
+                        <option value="" disabled selected>Select a program</option>
+                        <option value="cybersecurity">Cybersecurity Fundamentals</option>
+                        <option value="ethical-hacking">Ethical Hacking</option>
+                        <option value="ai-ml">AI & Machine Learning</option>
+                        <option value="web-dev">Full Stack Web Development</option>
+                        <option value="cloud">Cloud Computing</option>
+                        <option value="data-science">Data Science</option>
+                    </select>
+                    <div class="error-message" id="programError">Please select a program</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="start-date">Preferred Start Date *</label>
+                    <input type="date" id="start-date" name="start-date" required>
+                    <div class="error-message" id="startDateError">Please select a start date</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="education">Highest Level of Education *</label>
+                    <select id="education" name="education" required>
+                        <option value="" disabled selected>Select your education level</option>
+                        <option value="high-school">High School Diploma</option>
+                        <option value="associate">Associate Degree</option>
+                        <option value="bachelor">Bachelor's Degree</option>
+                        <option value="master">Master's Degree</option>
+                        <option value="phd">PhD</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <div class="error-message" id="educationError">Please select your education level</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">Do you have any prior experience in this field?</label>
+                    <textarea id="experience" name="experience" rows="3" placeholder="Briefly describe any relevant experience or skills"></textarea>
+                </div>
+                
+                <!-- Additional Information -->
+                <h3 style="color: var(--accent-blue); margin: 40px 0 20px; border-bottom: 1px solid rgba(0, 240, 255, 0.3); padding-bottom: 10px;">Additional Information</h3>
+                
+                <div class="form-group">
+                    <label for="goals">Why do you want to join this program? *</label>
+                    <textarea id="goals" name="goals" rows="4" required placeholder="Describe your career goals and how this program will help you achieve them"></textarea>
+                    <div class="error-message" id="goalsError">Please describe your goals</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="referral">How did you hear about us?</label>
+                    <select id="referral" name="referral">
+                        <option value="" selected>Select an option</option>
+                        <option value="search-engine">Search Engine (Google, Bing, etc.)</option>
+                        <option value="social-media">Social Media</option>
+                        <option value="friend">Friend or Family</option>
+                        <option value="advertisement">Advertisement</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <!-- Terms and Submit -->
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the <a href="#" style="color: var(--accent-blue);">Terms and Conditions</a> and <a href="#" style="color: var(--accent-blue);">Privacy Policy</a> *</label>
+                    </div>
+                    <div class="error-message" id="termsError">You must agree to the terms</div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">I would like to receive updates and newsletters</label>
+                    </div>
+                </div>
+                
+                <button type="submit" id="submitBtn">Submit Application</button>
+                
+                <p class="form-note">
+                    * Required fields<br>
+                    We'll contact you within 2 business days after reviewing your application.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- <script>
+        // Form Validation
+        const form = document.getElementById('applicationForm');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset error messages
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            let isValid = true;
+            
+            // Validate required fields
+            const requiredFields = [
+                'firstName', 'lastName', 'email', 'phone', 'dob', 
+                'address', 'city', 'state', 'zip', 'country',
+                'program', 'start-date', 'education', 'goals'
+            ];
+            
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                const error = document.getElementById(`${fieldId}Error`);
+                
+                if (!field.value.trim()) {
+                    error.style.display = 'block';
+                    isValid = false;
+                }
+            });
+            
+            // Validate gender
+            const genderSelected = document.querySelector('input[name="gender"]:checked');
+            if (!genderSelected) {
+                document.getElementById('genderError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate terms
+            if (!document.getElementById('terms').checked) {
+                document.getElementById('termsError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate email format
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // If form is valid, submit it
+            if (isValid) {
+                submitBtn.textContent = 'Processing...';
+                submitBtn.disabled = true;
+                
+                // Simulate form submission (replace with actual AJAX call)
+                setTimeout(() => {
+                    alert('Application submitted successfully! We will contact you soon.');
+                    form.reset();
+                    submitBtn.textContent = 'Submit Application';
+                    submitBtn.disabled = false;
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                }, 1500);
+            } else {
+                // Scroll to first error
+                const firstError = document.querySelector('.error-message[style="display: block;"]');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+        
+        // Phone number formatting
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function(e) {
+            const x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+    </script> -->
+</body>
+</html>

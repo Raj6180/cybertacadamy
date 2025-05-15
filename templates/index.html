@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Learns Academy | Tech Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-dark: #0A1128;
+            --primary-blue: #0066CC;
+            --accent-blue: #00F0FF;
+            --light-gray: #F5F5F5;
+            --white: #FFFFFF;
+            --black: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to right, #0f172a, #1e293b);
+            color: white;
+            /* background-color: var(--light-gray);
+            color: var(--black); */
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-dark);
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-blue);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            background: var(--accent-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.3);
+        }
+        
+        .btn-accent {
+            background: var(--accent-blue);
+            color: var(--primary-dark);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            font-size: 2.5rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-blue);
+            margin: 15px auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--accent-blue), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-blue);
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            /* background: linear-gradient(rgba(10, 17, 40, 0.9), rgba(10, 17, 40, 0.9)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover; */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .hero h1 span {
+            color: var(--accent-blue);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* Features Section */
+        .features {
+            background: url('https://www.transparenttextures.com/patterns/starring.png');
+            padding: 80px 0;
+            background-color: #2d2d2d; /* কম আলো, ডার্ক বেইজ */
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6), 
+            0 0 40px rgba(255, 94, 0, 0.904), 
+            0 0 60px rgba(0, 153, 255, 0.4);
+
+             
+        }
+
+        .section-title {
+            color: var(--accent-blue);
+            text-shadow: 0 0 8px rgba(37, 99, 235, 0.6),
+                 0 0 16px rgba(37, 99, 235, 0.5),
+                 0 0 24px rgba(37, 99, 235, 0.4);
+}
+
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 240, 255, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent-blue);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* Courses Section */
+        .courses {
+            background: linear-gradient(to right, #0f172a, #1e293b);
+            color: white;
+            background: url('https://www.transparenttextures.com/patterns/gray-floral.png');
+        }
+        
+        .course-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            background: var(--white);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .course-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .course-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .course-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .course-card:hover .course-img img {
+            transform: scale(1.1);
+        }
+        
+        .course-content {
+            padding: 20px;
+        }
+        
+        .course-category {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--primary-dark);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .course-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .course-price {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+        
+        /* About Page */
+        .about {
+            padding: 100px 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .member-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-info {
+            padding: 20px;
+        }
+        
+        .member-name {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-blue);
+        }
+        
+        /* Contact Page */
+        .contact {
+            padding: 100px 0;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-text p, .contact-text a {
+            color: #666;
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .map {
+            height: 300px;
+            margin-top: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Login/Register Page */
+        .auth {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(rgba(10, 17, 40, 0.8), rgba(10, 17, 40, 0.8)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            padding-top: 80px;
+        }
+        
+        .auth-container {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .auth-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            position: relative;
+        }
+        
+        .auth-tab.active {
+            color: var(--primary-blue);
+        }
+        
+        .auth-tab.active:after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-blue);
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-me input {
+            margin-right: 10px;
+        }
+        
+        .social-auth {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .social-auth p {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .social-auth p:before, .social-auth p:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: #ddd;
+        }
+        
+        .social-auth p:before {
+            left: 0;
+        }
+        
+        .social-auth p:after {
+            right: 0;
+        }
+        
+        .social-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+        
+        .facebook {
+            background: #3b5998;
+        }
+        
+        .google {
+            background: #db4437;
+        }
+        
+        .linkedin {
+            background: #0077b5;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent-blue);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent-blue);
+        }
+        
+        .footer-contact li {
+            margin-bottom: 15px;
+            list-style: none;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--accent-blue);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                order: -1;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--primary-dark);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                padding: 10px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .auth-container {
+                padding: 20px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="static/images/logo.png" alt="Cyber Learns Academy Logo">
+                <span class="logo-text">Cyber Learns Academy</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="btn btn-accent">Login/Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <main id="homePage">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Unlock Your <span>Cyber Future</span></h1>
+                    <p>Join the leading academy for cybersecurity, AI, and tech education. Gain hands-on experience with industry experts and launch your tech career.</p>
+                    <div class="hero-btns">
+                        <a href="courses.html" class="btn">Explore Courses</a>
+                        <a href="apply" class="btn btn-accent">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Why Choose Cyber Learns</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>Industry Experts</h3>
+                        <p>Learn from professionals with real-world experience in cybersecurity and technology.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Hands-on Training</h3>
+                        <p>Gain practical skills through labs, simulations, and real-world projects.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3>Certification Programs</h3>
+                        <p>Earn recognized certifications to boost your career prospects.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section class="courses">
+            <div class="container">
+                <h2 class="section-title">Popular Courses</h2>
+                <div class="course-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="cybersecurity">Cybersecurity</button>
+                    <button class="filter-btn" data-filter="programming">Programming</button>
+                    <button class="filter-btn" data-filter="ai">AI & Machine Learning</button>
+                    <button class="filter-btn" data-filter="cloud">Cloud Computing</button>
+                </div>
+                <div class="courses-grid">
+                    <div class="course-card" data-category="cybersecurity">
+                        <div class="course-img">
+                            <img src="static/images/ethack.jpg" alt="Ethical Hacking">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Cybersecurity</span>
+                            <h3 class="course-title">Ethical Hacking 0 to Hero</h3>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 24 Weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Beginner</span>
+                            </div>
+                            <p>Learn the tools and techniques used by ethical hackers to secure systems.</p>
+                            <div class="course-price">$75</div>
+                            <a href="#" class="btn">Enroll Now</a>
+                        </div>
+                    </div>
+                    <div class="course-card" data-category="ai">
+                        <div class="course-img">
+                            <img src="static/images/mlpython.png" alt="Machine Learning">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">AI & Machine Learning</span>
+                            <h3 class="course-title">Machine Learning with Python</h3>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 12 Weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                            </div>
+                            <p>Build and train machine learning models using Python and scikit-learn.</p>
+                            <div class="course-price">$75</div>
+                            <a href="#" class="btn">Enroll Now</a>
+                        </div>
+                    </div>
+                    <div class="course-card" data-category="programming">
+                        <div class="course-img">
+                            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Web Development">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Programming</span>
+                            <h3 class="course-title">Full Stack Web Development</h3>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 13 Weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Beginner</span>
+                            </div>
+                            <p>Master HTML, CSS, JavaScript, and Node.js to build complete web applications.</p>
+                            <div class="course-price">$75</div>
+                            <a href="#" class="btn">Enroll Now</a>
+                        </div>
+                    </div>
+                    <div class="course-card" data-category="programming">
+                        <div class="course-img">
+                            <img src="static/images/app.png" alt="Web Development">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Programming</span>
+                            <h3 class="course-title">Full Stack Game Development</h3>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 16 Weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Beginner</span>
+                            </div>
+                            <p>Master unity, Python, C++, C, JavaScript, to build complete Game applications.</p>
+                            <div class="course-price">$75</div>
+                            <a href="#" class="btn">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="courses.html" class="btn">View All Courses</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- About Page (hidden by default) -->
+    <div id="aboutPage" style="display: none;">
+        <section class="about">
+            <div class="container">
+                <h2 class="section-title">About Cyber Learns Academy</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Empowering the Next Generation of Cyber Professionals</h2>
+                        <p>Founded in 2020, Cyber Learns Academy has quickly established itself as a leader in technology education, specializing in cybersecurity, artificial intelligence, and software development.</p>
+                        <p>Our mission is to bridge the skills gap in the tech industry by providing high-quality, accessible education that prepares students for the challenges of tomorrow's digital landscape.</p>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number">1+</div>
+                                <div class="stat-label">Students Trained</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">98%</div>
+                                <div class="stat-label">Certification Pass Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">50+</div>
+                                <div class="stat-label">Industry Partners</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Cyber Learns Academy Team">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team">
+            <div class="container">
+                <h2 class="section-title">Meet Our Instructors</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-img">
+                            <img src="static/images/rajjak.jpg" alt="Alex Johnson">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Raj Sarkar</h3>
+                            <p class="member-role">Cybersecurity Expert</p>
+                            <p>Former Chief Security Officer with 15+ years of experience in penetration testing and network security.</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <!-- <div class="team-member">
+                        <div class="member-img">
+                            <img src="https://images.unsplash.com/photo-1562788869-4ed32648eb72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="Michael Rodriguez">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Michael Rodriguez</h3>
+                            <p class="member-role">Cloud Architect</p>
+                            <p>AWS Certified Solutions Architect with extensive experience in cloud infrastructure design.</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="team-member">
+                        <div class="member-img">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" alt="Priya Patel">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Priya Patel</h3>
+                            <p class="member-role">Full Stack Developer</p>
+                            <p>Senior developer specializing in JavaScript frameworks and responsive web design.</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Courses Page (hidden by default) -->
+    <div id="coursesPage" style="display: none;">
+        <section class="courses">
+            <div class="container">
+                <h2 class="section-title">All Courses</h2>
+                <div class="course-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="cybersecurity">Cybersecurity</button>
+                    <button class="filter-btn" data-filter="ai">AI & Machine Learning</button>
+                    <button class="filter-btn" data-filter="programming">Programming</button>
+                    <button class="filter-btn" data-filter="cloud">Cloud Computing</button>
+                    <button class="filter-btn" data-filter="data">Data Science</button>
+                </div>
+                <div class="courses-grid">
+                    <div class="course-card" data-category="cybersecurity">
+                        <div class="course-img">
+                            <img src="static/images/ethack.jpg" alt="Ethical Hacking">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Cybersecurity</span>
+                            <h3 class="course-title">Ethical Hacking Fundamentals</h3>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 24 Weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Beginner</span>
+                            </div>
+                            <p>Learn the tools and techniques used by ethical hackers to secure systems.</p>
+                            <div class="course-price">$75</div>
+                            <a href="#" class="btn">Enroll Now</a>
+                        </div>
+                    </div>
+                    <div class="course-card" data-category="ai">
+                        <div class="course-img">
+                            <img src="static/images/mlpython.png" alt="Machine Learning">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">AI & Machine Learning</span>
+                            <h3 class="course-title">Machine Learning with Python</h3>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 12 Weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                            </div>
+                            <p>Build and train machine learning models using Python and scikit-learn.</p>
+                            <div class="course-price">$75</div>
+                            <a href="#" class="btn">Enroll Now</a>
+                        </div>
+                    </div>
+                    <div class="course-card" data-category="programming">
+                        <div class="course-img">
+                            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Web Development">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Programming</span>
+                            <h3 class="course-title">Full Stack Web Development</h3>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 10 Weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Beginner</span>
+                            </div>
+                            <p>Master HTML, CSS, JavaScript, and Node.js to build complete web applications.</p>
+                            <div class="course-price">$75</div>
+                            <a href="#" class="btn">Enroll Now</a>
+                        </div>
+                    </div>
+                    <div class="course-card" data-category="cloud">
+                        <div class="course-img">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" alt="Cloud Computing">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Cloud Computing</span>
+                            <h3 class="course-title">AWS Cloud Practitioner</h3>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 6 Weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Beginner</span>
+                            </div>
+                            <p>Learn the fundamentals of Amazon Web Services and cloud infrastructure.</p>
+                            <div class="course-price">$75</div>
+                            <a href="#" class="btn">Enroll Now</a>
+                        </div>
+                    </div>
+                    <div class="course-card" data-category="data">
+                        <div class="course-img">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Science">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Data Science</span>
+                            <h3 class="course-title">Data Analysis with Python</h3>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 8 Weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                            </div>
+                            <p>Master data manipulation, visualization, and analysis using Python libraries.</p>
+                            <div class="course-price">$75</div>
+                            <a href="#" class="btn">Enroll Now</a>
+                        </div>
+                    </div>
+                    <div class="course-card" data-category="cybersecurity">
+                        <div class="course-img">
+                            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Network Security">
+                        </div>
+                        <div class="course-content">
+                            <span class="course-category">Cybersecurity</span>
+                            <h3 class="course-title">Network Security Essentials</h3>
+                            <div class="course-meta">
+                                <span><i class="far fa-clock"></i> 10 Weeks</span>
+                                <span><i class="fas fa-user-graduate"></i> Intermediate</span>
+                            </div>
+                            <p>Learn to secure networks against threats and implement security protocols.</p>
+                            <div class="course-price">$75</div>
+                            <a href="#" class="btn">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page (hidden by default) -->
+    <div id="contactPage" style="display: none;">
+        <section class="contact">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p>Have questions about our courses or programs? Reach out to our team and we'll be happy to assist you.</p>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Our Location</h4>
+                                    <p>123 Tech Park Drive, Cyber City, CA 90210</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Phone Number</h4>
+                                    <p><a href="tel:+918942045558">+91 8942045558</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Email Address</h4>
+                                    <p><a href="Ucoming....">info@cyberlearnsacademy.com</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Office Hours</h4>
+                                    <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                                    <p>Saturday: 10:00 AM - 4:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215256835786!2d-73.9878449242665!3d40.7484409713896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1689879344295!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Login/Register Page (hidden by default) -->
+    <div id="loginPage" style="display: none;">
+        <section class="auth">
+            <div class="container">
+                <div class="auth-container">
+                    <div class="auth-tabs">
+                        <div class="auth-tab active" data-tab="login">Login</div>
+                        <div class="auth-tab" data-tab="register">Register</div>
+                    </div>
+                    <form class="auth-form active" id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <input type="email" id="loginEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" name="password" required>
+                        </div>
+                        <div class="remember-forgot">
+                            <div class="remember-me">
+                                <input type="checkbox" id="rememberMe" name="rememberMe">
+                                <label for="rememberMe">Remember me</label>
+                            </div>
+                            <a href="#">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="btn">Login</button>
+                        <div class="social-auth">
+                            <p>Or login with</p>
+                            <div class="social-btns">
+                                <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-btn google"><i class="fab fa-google"></i></a>
+                                <a href="#" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </form>
+                    <form class="auth-form" id="registerForm">
+                        <div class="form-group">
+                            <label for="registerName">Full Name</label>
+                            <input type="text" id="registerName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Email Address</label>
+                            <input type="email" id="registerEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Password</label>
+                            <input type="password" id="registerPassword" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerConfirm">Confirm Password</label>
+                            <input type="password" id="registerConfirm" name="confirmPassword" required>
+                        </div>
+                        <button type="submit" class="btn">Register</button>
+                        <div class="social-auth">
+                            <p>Or register with</p>
+                            <div class="social-btns">
+                                <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-btn google"><i class="fab fa-google"></i></a>
+                                <a href="#" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Cyber Learns Academy</h3>
+                    <p>Empowering the next generation of cybersecurity professionals and tech leaders through innovative education and hands-on training.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="login.html">Login/Register</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Courses</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Cybersecurity</a></li>
+                        <li><a href="#">AI & Machine Learning</a></li>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Cloud Computing</a></li>
+                        <li><a href="#">Data Science</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Tech Park Drive, Cyber City, CA 90210</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span><a href="tel:+18005551234">+91 8942045558</a></span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span><a href="mailto:info@cyberlearnsacademy.com">upcoming....</a></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Cyber Learns Academy. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Course Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const courseCards = document.querySelectorAll('.course-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                courseCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Auth Tabs
+        const authTabs = document.querySelectorAll('.auth-tab');
+        const authForms = document.querySelectorAll('.auth-form');
+        
+        authTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and forms
+                authTabs.forEach(t => t.classList.remove('active'));
+                authForms.forEach(f => f.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding form
+                tab.classList.add('active');
+                document.getElementById(`${tabId}Form`).classList.add('active');
+            });
+        });
+        
+        // Simple page navigation (for demo purposes)
+        // In a real site, these would be separate pages
+        const navLinks = document.querySelectorAll('nav a');
+        const pages = {
+            'index.html': 'homePage',
+            'about.html': 'aboutPage',
+            'courses.html': 'coursesPage',
+            'contact.html': 'contactPage',
+            'login.html': 'loginPage'
+        };
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                
+                // Hide all pages
+                document.querySelectorAll('main, #aboutPage, #coursesPage, #contactPage, #loginPage').forEach(page => {
+                    page.style.display = 'none';
+                });
+                
+                // Show the selected page
+                if (pages[href]) {
+                    document.getElementById(pages[href]).style.display = 'block';
+                }
+                
+                // Close mobile menu if open
+                navMenu.classList.remove('show');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+    </script>
+</body>
+</html>
